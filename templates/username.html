@@ -1,0 +1,36 @@
+{% extends 'formBase.html' %}
+{% block title %}Username Amazon{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+
+{% endblock %}
+{% block messages %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <ul style="height: 35px; width: 30%; border: 1px solid #007bff; border-radius: 15px; background-color: #e7f1ff; padding: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        {% for category, message in messages %}
+            <li class="{{ category }}" style="color: #333; font-size: 14px; font-family: 'Arial', sans-serif; display: flex; align-items: center;">
+                <span style="margin-right: 10px; font-weight: bold; color: #007bff;">Alert:</span>{{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+{% endblock %}
+{% block image %} <img src="{{url_for('static',filename='Logo.jpg')}}" alt="Logo" id="logo">{% endblock
+%}
+{% block content %}
+<h5><b>Enter your  new username (within 15 characters)</b></h5>
+<p>as username from your email is too long. </p>
+<form action="{{url_for('username')}}" method="POST">
+    <input type="text" required class="email-box" name="username" placeholder="Enter your username here.">
+    <button class="submit-box">Continue</button>
+   
+</form>
+<a href="{{url_for('signUp')}}"><button class="submit-box">Sign Up</button></a>
+<p id="agree">By agreeing you accept Amazon's <a href="#">conditions of use</a> and the <a href="#">privacy
+        policy.</a></p>
+<hr>
+
+{% endblock %}
+
